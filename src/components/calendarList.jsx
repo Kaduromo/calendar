@@ -68,6 +68,9 @@ const CalendarsList = () => {
   return (
     <div className="calendar">
       <div className="calendar-container">
+        <button className="dark-mode" onClick={handleDarkMode}>
+          dark mode
+        </button>
         <header>
           <h1 className="calendar-title">ЕБАНЫЙ</h1>
           <p>
@@ -80,7 +83,6 @@ const CalendarsList = () => {
                 </button>
               </span>
               <button onClick={handleNextMonthButtonClick}>{">"}</button>
-              <button onClick={handleDarkMode}>"dark"</button>
             </span>
           </p>
         </header>
