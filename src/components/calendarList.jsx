@@ -26,7 +26,7 @@ const defaultProps = {
 
 const CalendarsList = () => {
   const [date, setDate] = useState(defaultProps.date)
-  const [theme, setTheme] = useState("Светлая")
+  const [theme, setTheme] = useState("Тёмная")
 
   const year = () => date.getFullYear()
   const month = (mont) => (mont ? mont - 1 : date.getMonth())
@@ -68,11 +68,11 @@ const CalendarsList = () => {
     if (currentTheme === "light") {
       document.documentElement.setAttribute("data-theme", "dark")
       localStorage.setItem("theme", "dark")
-      setTheme("Тёмная")
+      setTheme("Светлая")
     } else {
       document.documentElement.setAttribute("data-theme", "light")
       localStorage.setItem("theme", "light")
-      setTheme("Светлая")
+      setTheme("Тёмная")
     }
   }
 
