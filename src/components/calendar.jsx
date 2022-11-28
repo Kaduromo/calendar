@@ -14,34 +14,45 @@ const Calendar = ({ props, year, month, title, text }) => {
 
     switch (day.trim()) {
       case "1-0":
+        setSelectedDate(date)
         return toast("Ебаный Новый Год")
       case "2-0":
+        setSelectedDate(date)
         return toast("Ебаный Новый Год")
       case "7-0":
+        setSelectedDate(date)
         return toast("Ебаное Рождество")
       case "8-2":
+        setSelectedDate(date)
         return toast("Ебаный День Женщин")
       case "24-3":
+        setSelectedDate(date)
         return toast("Ебаная Радуница")
       case "25-3":
+        setSelectedDate(date)
         return toast("Ебаная Радуница")
       case "1-4":
+        setSelectedDate(date)
         return toast("Ебаный День Труда")
       case "8-4":
+        setSelectedDate(date)
         return toast("Ебаный День Победы")
       case "9-4":
+        setSelectedDate(date)
         return toast("Ебаный День Победы")
       case "3-5":
+        setSelectedDate(date)
         return toast("Ебаный День Независимости")
       case "7-10":
+        setSelectedDate(date)
         return toast("Ебаный День Октябрьской революции")
       case "25-11":
+        setSelectedDate(date)
         return toast("Ебаное Рождество")
       default:
+        setSelectedDate()
         break
     }
-
-    setSelectedDate(date)
   }
 
   const handleHappyDay = (date) => {
@@ -75,6 +86,7 @@ const Calendar = ({ props, year, month, title, text }) => {
         break
     }
   }
+
   return (
     <div>
       <p className="table-text">{text}</p>

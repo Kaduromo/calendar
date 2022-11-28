@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import "./index.css"
 import Calendar from "./calendar.jsx"
+import { toast } from "react-toastify"
 
 const defaultProps = {
   date: new Date(),
@@ -25,21 +26,29 @@ const defaultProps = {
 
 const CalendarsList = () => {
   const [date, setDate] = useState(defaultProps.date)
+  const [theme, setTheme] = useState("Светлая")
 
   const year = () => date.getFullYear()
   const month = (mont) => (mont ? mont - 1 : date.getMonth())
 
   const handlePrevMonthButtonClick = () => {
     const date = new Date(year(), month() - 12)
+    toast(date.getFullYear())
     setDate(date)
   }
 
   const handleTodayMonthButtonClick = () => {
+    toast(
+      `Сегодня ${new Date().getDate()}.${
+        new Date().getMonth() + 1
+      }.${new Date().getFullYear()}`
+    )
     setDate(new Date())
   }
 
   const handleNextMonthButtonClick = () => {
     const date = new Date(year(), month() + 12)
+    toast(date.getFullYear())
     setDate(date)
   }
 
@@ -59,9 +68,11 @@ const CalendarsList = () => {
     if (currentTheme === "light") {
       document.documentElement.setAttribute("data-theme", "dark")
       localStorage.setItem("theme", "dark")
+      setTheme("Тёмная")
     } else {
       document.documentElement.setAttribute("data-theme", "light")
       localStorage.setItem("theme", "light")
+      setTheme("Светлая")
     }
   }
 
@@ -69,20 +80,30 @@ const CalendarsList = () => {
     <div className="calendar">
       <div className="calendar-container">
         <button className="dark-mode" onClick={handleDarkMode}>
-          dark mode
+          {theme} тема
         </button>
         <header>
           <h1 className="calendar-title">ЕБАНЫЙ</h1>
           <p>
             КАЛЕНДАРЬ
             <span>
-              <button onClick={handlePrevMonthButtonClick}>{"<"}</button>
+              <button
+                className="calendar-prev"
+                onClick={handlePrevMonthButtonClick}
+              >
+                {date.getFullYear() - 1}
+              </button>
               <span>
                 <button onClick={handleTodayMonthButtonClick}>
                   {date.getFullYear()}
                 </button>
               </span>
-              <button onClick={handleNextMonthButtonClick}>{">"}</button>
+              <button
+                className="calendar-next"
+                onClick={handleNextMonthButtonClick}
+              >
+                {date.getFullYear() + 1}
+              </button>
             </span>
           </p>
         </header>
@@ -148,7 +169,7 @@ const CalendarsList = () => {
             year={year()}
             month={month(8)}
             title="Сентябрь"
-            text="ебаное &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3 сентября"
+            text="ебаное 3 сентября"
           />
           <Calendar
             props={defaultProps}
