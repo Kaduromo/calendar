@@ -1,13 +1,13 @@
 import { useState } from "react"
-import { areEqual, getMonthData } from "./calendar"
 import classnames from "classnames"
 import { toast } from "react-toastify"
+import { areEqual, getMonthData } from "./calendar"
 
-const Calendar = ({ props, year, month, title, text }) => {
+const Calendar = ({ year, month, title, text }) => {
   const [selectedDate, setSelectedDate] = useState(null)
   const [currentDate] = useState(new Date())
-
   const monthData = getMonthData(year, month)
+  const weekDayNames = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"]
 
   const handleDayClick = (date) => {
     const day = `${date.getDate()}-${date.getMonth()}`
@@ -94,7 +94,7 @@ const Calendar = ({ props, year, month, title, text }) => {
       <table>
         <thead>
           <tr>
-            {props.weekDayNames.map((name) => (
+            {weekDayNames.map((name) => (
               <th key={name}>{name}</th>
             ))}
           </tr>

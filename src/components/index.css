@@ -62,13 +62,15 @@ body {
 }
 
 .calendar {
-  margin-top: calc(15px + 32 * ((100vw - 320px) / (1200 - 320)));
-  margin-bottom: calc(20px + 20 * ((100vw - 320px) / (1200 - 320)));
+  margin-top: calc(8px + 32 * ((100vw - 320px) / (1200 - 320)));
+  margin-bottom: calc(50px + 20 * ((100vw - 320px) / (1200 - 320)));
 }
 .calendar-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 30px;
+  padding: 0;
+  padding-left: calc(12px + 32 * ((100vw - 320px) / (1200 - 320)));
+  padding-right: calc(12px + 32 * ((100vw - 320px) / (1200 - 320)));
 }
 
 .calendar-title button {
@@ -85,11 +87,10 @@ body {
   font-family: "Montserrat";
   font-style: normal;
   font-weight: 900;
-  font-size: calc(58px + 85 * ((100vw - 320px) / (1200 - 320)));
+  font-size: calc(55px + 85 * ((100vw - 320px) / (1200 - 320)));
   line-height: calc(260 / 200);
   background-image: var(--text-color);
   color: transparent;
-  -webkit-background-clip: text;
   background-clip: text;
   margin: 0;
 }
@@ -208,4 +209,47 @@ tbody td {
 tbody td:nth-child(6),
 tbody td:nth-child(7) {
   color: var(--date-color);
+}
+
+.arrow,
+.arrow:before {
+  /* position: absolute; */
+  left: 50%;
+}
+
+.arrow {
+  width: 40px;
+  height: 40px;
+  top: 50%;
+  margin: -20px 0 0 -20px;
+  transform: rotate(-45deg);
+  border-left: none;
+  border-top: none;
+  border-right: 2px #000 solid;
+  border-bottom: 2px #000 solid;
+}
+
+.arrow:before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  top: 50%;
+  margin: -10px 0 0 -10px;
+  border-left: none;
+  border-top: none;
+  border-right: 1px #000 solid;
+  border-bottom: 1px #000 solid;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  animation-name: arrow;
+}
+
+@keyframes arrow {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(10px, 10px);
+  }
 }
