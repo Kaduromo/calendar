@@ -81,22 +81,22 @@ const CalendarsList = () => {
               КАЛЕНДАРЬ
               <span>
                 <button
-                  className="calendar-prev"
+                  className="calendar-prev arrow"
+                  style={{
+                    borderColor:
+                      theme === "Тёмная"
+                        ? "linear-gradient(97.64deg, #ff621f 3.48%, #ac25ff 88.39%)"
+                        : "blue",
+                  }}
                   onClick={handlePrevMonthButtonClick}
-                >
-                  {date.getFullYear() - 1}
+                />
+                <button onClick={handleTodayMonthButtonClick}>
+                  {date.getFullYear()}
                 </button>
-                <span>
-                  <button onClick={handleTodayMonthButtonClick}>
-                    {date.getFullYear()}
-                  </button>
-                </span>
                 <button
-                  className="calendar-next"
+                  className="calendar-next arrow"
                   onClick={handleNextMonthButtonClick}
-                >
-                  {date.getFullYear() + 1}
-                </button>
+                />
               </span>
             </p>
           </header>
@@ -114,7 +114,8 @@ const CalendarsList = () => {
         </div>
       </div>
       <ToastContainer
-        autoClose={3000}
+        autoClose={2500}
+        position={window.innerWidth < 767.98 ? "bottom-center" : "top-right"}
         theme={theme === "Тёмная" ? "dark" : "light"}
       />
     </>

@@ -11,6 +11,7 @@
     #b414ff 100%
   );
 }
+
 [data-theme="dark"] {
   --bg-color: #000;
   --text-color: linear-gradient(
@@ -97,6 +98,7 @@ body {
 
 .calendar header p > span {
   display: flex;
+  align-items: center;
 }
 .calendar header button {
   cursor: pointer;
@@ -107,21 +109,18 @@ body {
 .calendar header p,
 .calendar header button,
 .calendar header p span button {
-  font-size: calc(25px + 38 * ((100vw - 320px) / (1200 - 320)));
+  font-size: calc(28px + 35 * ((100vw - 320px) / (1200 - 320)));
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin: 0;
-  height: 100%;
   background-image: var(--text-color);
   color: transparent;
-  -webkit-background-clip: text;
   background-clip: text;
 }
 
 .calendar-next,
 .calendar-prev {
-  margin: auto 0 !important;
   font-size: calc(10px + 10 * ((100vw - 320px) / (1200 - 320))) !important;
 }
 
@@ -187,7 +186,6 @@ body {
   font-size: 28px;
   background-image: var(--table-color);
   color: transparent;
-  -webkit-background-clip: text;
   background-clip: text;
   margin: 14px 0;
   text-transform: uppercase;
@@ -211,37 +209,36 @@ tbody td:nth-child(7) {
   color: var(--date-color);
 }
 
-.arrow,
-.arrow:before {
-  /* position: absolute; */
-  left: 50%;
-}
-
 .arrow {
   width: 40px;
   height: 40px;
-  top: 50%;
-  margin: -20px 0 0 -20px;
-  transform: rotate(-45deg);
-  border-left: none;
-  border-top: none;
-  border-right: 2px #000 solid;
-  border-bottom: 2px #000 solid;
+  width: calc(22px + 3.45 * ((100vw - 320px) / (1200 - 320)));
+  height: calc(22px + 3.45 * ((100vw - 320px) / (1200 - 320)));
+  position: relative;
 }
 
 .arrow:before {
   content: "";
   width: 20px;
   height: 20px;
-  top: 50%;
-  margin: -10px 0 0 -10px;
-  border-left: none;
-  border-top: none;
-  border-right: 1px #000 solid;
-  border-bottom: 1px #000 solid;
+  width: calc(12px + 3 * ((100vw - 320px) / (1200 - 320)));
+  height: calc(12px + 3 * ((100vw - 320px) / (1200 - 320)));
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: none;
+  border-right: 2px var(--date-color) solid;
+  border-bottom: 2px var(--date-color) solid;
   animation-duration: 2s;
   animation-iteration-count: infinite;
   animation-name: arrow;
+}
+
+.calendar-next.arrow {
+  transform: rotate(-45deg);
+}
+.calendar-prev.arrow {
+  transform: rotate(135deg);
 }
 
 @keyframes arrow {
