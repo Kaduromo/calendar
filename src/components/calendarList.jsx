@@ -82,12 +82,6 @@ const CalendarsList = () => {
               <span>
                 <button
                   className="calendar-prev arrow"
-                  style={{
-                    borderColor:
-                      theme === "Тёмная"
-                        ? "linear-gradient(97.64deg, #ff621f 3.48%, #ac25ff 88.39%)"
-                        : "blue",
-                  }}
                   onClick={handlePrevMonthButtonClick}
                 />
                 <button onClick={handleTodayMonthButtonClick}>
