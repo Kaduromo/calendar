@@ -164,7 +164,7 @@ body {
   border-radius: 4px;
 }
 
-.calendar .day.happy {
+.calendar .day.holiday {
   color: var(--date-color);
 }
 

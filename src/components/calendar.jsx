@@ -7,84 +7,37 @@ const Calendar = ({ year, month, title, text }) => {
   const [selectedDate, setSelectedDate] = useState(null)
   const [currentDate] = useState(new Date())
   const monthData = getMonthData(year, month)
+
   const weekDayNames = ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"]
+  const holidayDays = [
+    { date: "1-0", text: "Ебаный Новый Год" },
+    { date: "2-0", text: "Ебаный Новый Год" },
+    { date: "7-0", text: "Ебаное Рождество" },
+    { date: "8-2", text: "Ебаный День Женщин" },
+    { date: "24-3", text: "Ебаная Радуница" },
+    { date: "25-3", text: "Ебаная Радуница" },
+    { date: "1-4", text: "Ебаный День Труда" },
+    { date: "9-4", text: "Ебаный День Победы" },
+    { date: "3-5", text: "Ебаный День Независимости" },
+    { date: "7-10", text: "Ебаный День Октябрьской революции" },
+    { date: "25-11", text: "Ебаное Рождество" },
+  ]
 
-  const handleDayClick = (date) => {
-    const day = `${date.getDate()}-${date.getMonth()}`
+  const currentDay = (d) => `${d.getDate()}-${d.getMonth()}`
 
-    switch (day.trim()) {
-      case "1-0":
+  const selectedDay = (date) => {
+    const day = currentDay(date)
+    holidayDays.forEach((happyDay) => {
+      if (happyDay.date === day) {
         setSelectedDate(date)
-        return toast("Ебаный Новый Год")
-      case "2-0":
-        setSelectedDate(date)
-        return toast("Ебаный Новый Год")
-      case "7-0":
-        setSelectedDate(date)
-        return toast("Ебаное Рождество")
-      case "8-2":
-        setSelectedDate(date)
-        return toast("Ебаный День Женщин")
-      case "24-3":
-        setSelectedDate(date)
-        return toast("Ебаная Радуница")
-      case "25-3":
-        setSelectedDate(date)
-        return toast("Ебаная Радуница")
-      case "1-4":
-        setSelectedDate(date)
-        return toast("Ебаный День Труда")
-      case "8-4":
-        setSelectedDate(date)
-        return toast("Ебаный День Победы")
-      case "9-4":
-        setSelectedDate(date)
-        return toast("Ебаный День Победы")
-      case "3-5":
-        setSelectedDate(date)
-        return toast("Ебаный День Независимости")
-      case "7-10":
-        setSelectedDate(date)
-        return toast("Ебаный День Октябрьской революции")
-      case "25-11":
-        setSelectedDate(date)
-        return toast("Ебаное Рождество")
-      default:
-        setSelectedDate()
-        break
-    }
+        toast(happyDay.text)
+      }
+    })
   }
 
-  const handleHappyDay = (date) => {
-    const day = `${date.getDate()}-${date.getMonth()}`
-    switch (day.trim()) {
-      case "1-0":
-        return date
-      case "2-0":
-        return date
-      case "7-0":
-        return date
-      case "8-2":
-        return date
-      case "24-3":
-        return date
-      case "25-3":
-        return date
-      case "1-4":
-        return date
-      case "8-4":
-        return date
-      case "9-4":
-        return date
-      case "3-5":
-        return date
-      case "7-10":
-        return date
-      case "25-11":
-        return date
-      default:
-        break
-    }
+  const holidayDay = (date) => {
+    const day = currentDay(date)
+    return holidayDays.find((happyDay) => happyDay.date === day && date)
   }
 
   return (
@@ -110,9 +63,9 @@ const Calendar = ({ year, month, title, text }) => {
                     className={classnames("day", {
                       today: areEqual(date, currentDate),
                       selected: areEqual(date, selectedDate),
-                      happy: handleHappyDay(date),
+                      holiday: holidayDay(date),
                     })}
-                    onClick={() => handleDayClick(date)}
+                    onClick={() => selectedDay(date)}
                   >
                     {date.getDate()}
                   </td>
